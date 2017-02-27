@@ -25,7 +25,7 @@ class Page
 
     /**
      * One Page has Many Records.
-     * @OneToMany(targetEntity="Record", mappedBy="page")
+     * @ORM\OneToMany(targetEntity="Record", mappedBy="page")
      */
     private $records;
 
