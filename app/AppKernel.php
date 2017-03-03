@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new MovieBundle\MovieBundle(),
             new LoggerBundle\LoggerBundle(),
             new TrackerBundle\TrackerBundle(),
+            new BlogBundle\BlogBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -2,6 +2,10 @@ tracker:
     resource: "@TrackerBundle/Resources/config/routing.yml"
     prefix:   /
 
+blog:
+    resource: "@BlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
 logger:
     resource: "@LoggerBundle/Controller/"
     type:     annotation

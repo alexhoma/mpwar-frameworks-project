@@ -1,22 +1,22 @@
 <?php
 
-namespace TrackerBundle\Controller;
+namespace BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use TrackerBundle\Entity\Post;
+use BlogBundle\Entity\Post;
 
 class BlogController extends Controller
 {
     public function blogAction()
     {
         $em    = $this->get('doctrine.orm.default_entity_manager');
-        $posts = $em->getRepository('TrackerBundle\Entity\Post')->findAll();
+        $posts = $em->getRepository('BlogBundle\Entity\Post')->findAll();
 
-        return $this->render('TrackerBundle:Blog:blog.html.twig', array(
+        return $this->render('BlogBundle:Blog:blog.html.twig', array(
             'posts' => $posts,
         ));
     }
@@ -24,7 +24,7 @@ class BlogController extends Controller
     public function postAction($postSlug)
     {
         $em   = $this->get('doctrine.orm.default_entity_manager');
-        $post = $em->getRepository('TrackerBundle\Entity\Post')
+        $post = $em->getRepository('BlogBundle\Entity\Post')
             ->findOneBy(['slug' => $postSlug]);
 
         if (!$post) {
@@ -33,7 +33,7 @@ class BlogController extends Controller
             );
         }
 
-        return $this->render('TrackerBundle:Blog:post.html.twig', array(
+        return $this->render('BlogBundle:Blog:post.html.twig', array(
             'post' => $post
         ));
     }
@@ -61,7 +61,7 @@ class BlogController extends Controller
             return $this->redirectToRoute('blog_list');
         }
 
-        return $this->render('TrackerBundle:Blog:createPost.html.twig', array(
+        return $this->render('BlogBundle:Blog:createPost.html.twig', array(
             'form' => $form->createView(),
         ));
     }

@@ -1,21 +1,11 @@
 # Tracker
 tracker_dashboard:
     path:      /tracker/dashboard
-    defaults:  { _controller: TrackerBundle:Tracker:dashbaord }
+    defaults:  { _controller: TrackerBundle:Tracker:dashboard }
+tracker_record:
+    path:      /tracker/record/{recordId}
+    defaults:  { _controller: TrackerBundle:Tracker:recordDetail }
 track:
     path:      /tracker/track
-    defaults:  { _controller: TrackerBundle:Tracker:track}
-
-# Testing routes
-blog_list:
-    path:     /blog
-    defaults: { _controller: TrackerBundle:Blog:blog }
-
-post_create:
-    path:     /blog/create
-    defaults: { _controller: TrackerBundle:Blog:createPost }
-
-post:
-    path:     /blog/post/{postSlug}
-    defaults: { _controller: TrackerBundle:Blog:post }
+    defaults:  { _controller: TrackerBundle:Tracker:track }
 

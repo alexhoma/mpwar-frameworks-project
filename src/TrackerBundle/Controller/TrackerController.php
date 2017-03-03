@@ -13,13 +13,31 @@ class TrackerController extends Controller
     # Dashboard index / registry list
     public function dashboardAction()
     {
-        return $this->render('TrackerBundle:Dashboard:dashboard.html.twig');
+        $em      = $this->get('doctrine.orm.default_entity_manager');
+        $records = $em->getRepository('TrackerBundle\Entity\Record')
+            ->findAll();
+
+        return $this->render('TrackerBundle:Tracker:dashboard.html.twig', array(
+            'records' => $records
+        ));
+    }
+
+    # Show registry details
+    public function recordDetailAction($recordId)
+    {
+        $em   = $this->get('doctrine.orm.default_entity_manager');
+        $record = $em->getRepository('TrackerBundle\Entity\Record')
+            ->findOneBy(['id' => $recordId]);
+
+        return $this->render('TrackerBundle:Tracker:recordDetail.html.twig', array(
+            'record' => $record
+        ));
     }
 
     # Insert registry
     public function trackAction(Request $request)
     {
-        $record = new Record();
+        $record  = new Record();
         $tracked = json_decode($request->getContent());
 
         $post = $this->getPostBySlug($tracked->postSlug);
@@ -42,11 +60,10 @@ class TrackerController extends Controller
 
     private function getPostBySlug($slug)
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
-        $page = $em->getRepository('TrackerBundle\Entity\Post')
-                ->findOneBy(['slug' => $slug]);
+        $em   = $this->get('doctrine.orm.default_entity_manager');
+        $page = $em->getRepository('BlogBundle\Entity\Post')
+            ->findOneBy(['slug' => $slug]);
+
         return $page;
     }
-
-    # Show Registry details
 }

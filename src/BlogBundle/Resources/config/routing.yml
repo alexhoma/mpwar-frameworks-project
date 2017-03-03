@@ -1,0 +1,12 @@
+# Blog routes
+blog_list:
+    path:     /blog
+    defaults: { _controller: BlogBundle:Blog:blog }
+
+post_create:
+    path:     /blog/create
+    defaults: { _controller: BlogBundle:Blog:createPost }
+
+post:
+    path:     /blog/post/{postSlug}
+    defaults: { _controller: BlogBundle:Blog:post }

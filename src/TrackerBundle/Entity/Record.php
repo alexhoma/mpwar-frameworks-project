@@ -20,7 +20,7 @@ class Record
 
     /**
      * Many Records have One Post
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="records")
+     * @ORM\ManyToOne(targetEntity="BlogBundle\Entity\Post", inversedBy="records")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
     private $post;

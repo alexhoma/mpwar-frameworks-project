@@ -1,6 +1,6 @@
 <?php
 
-namespace TrackerBundle\Entity;
+namespace BlogBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,7 +35,7 @@ class Post
 
     /**
      * One Page has Many Records.
-     * @ORM\OneToMany(targetEntity="Record", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="\TrackerBundle\Entity\Record", mappedBy="post")
      */
     private $records;
 
