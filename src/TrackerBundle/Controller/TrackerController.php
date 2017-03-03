@@ -14,23 +14,47 @@ class TrackerController extends Controller
     public function dashboardAction()
     {
         $em      = $this->get('doctrine.orm.default_entity_manager');
+
         $records = $em->getRepository('TrackerBundle\Entity\Record')
             ->findAll();
 
+        $posts = $em->getRepository('BlogBundle\Entity\Post')
+            ->findAll();
+
         return $this->render('TrackerBundle:Tracker:dashboard.html.twig', array(
-            'records' => $records
+            'records' => $records,
+            'posts' => $posts
         ));
     }
 
     # Show registry details
     public function recordDetailAction($recordId)
     {
-        $em   = $this->get('doctrine.orm.default_entity_manager');
+        $em     = $this->get('doctrine.orm.default_entity_manager');
         $record = $em->getRepository('TrackerBundle\Entity\Record')
             ->findOneBy(['id' => $recordId]);
 
         return $this->render('TrackerBundle:Tracker:recordDetail.html.twig', array(
             'record' => $record
+        ));
+    }
+
+    # Show registry details
+    public function postRecordsDetailAction($postId)
+    {
+        $em = $this->get('doctrine.orm.default_entity_manager');
+
+        // get post
+        $post = $em->getRepository('BlogBundle\Entity\Post')
+            ->findOneBy(['id' => $postId]);
+
+        // get records
+        $records = $em->getRepository('TrackerBundle\Entity\Record')
+            ->findBy(['post' => $post]);
+
+        return $this->render('TrackerBundle:Tracker:postRecordsDetail.html.twig', array(
+            'post' => $post,
+            'records' => $records
         ));
     }
 

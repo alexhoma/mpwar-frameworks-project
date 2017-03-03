@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Record detail{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Post records</h1>
+
+        <a href="{{ url('tracker_dashboard') }}">< Back to dashboard</a>
+    </div>
+
+    <h4>Post title: {{ post.title }}</h4>
+    <h4>Visits: {{ records|length }}</h4>
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <strong>Record list:</strong>
+        </div>
+
+        <!-- Table -->
+        <table class="table table-stripped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Post</th>
+                <th>Device</th>
+                <th>OS</th>
+                <th>Browser</th>
+                <th>Version</th>
+                <th>Language</th>
+                <th>Cookies Enabled</th>
+                {#<th>Datetime</th>#}
+                <th>Link</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for record in records|reverse %}
+                <tr>
+                    <td>{{ record.id }}</td>
+                    <td>{{ record.post.title }}</td>
+                    <td>{{ record.device }}</td>
+                    <td>{{ record.operatingSystem }}</td>
+                    <td>{{ record.browser }}</td>
+                    <td>{{ record.version }}</td>
+                    <td>{{ record.language }}</td>
+                    <td>{{ (record.cookieEnabled > 0)? 'Yes':'No' }}</td>
+                    {#<td>{{ record.datetime }}</td>#}
+                    <td>
+                        <a href="{{ url('tracker_record', { 'recordId': record.id } ) }}"
+                           class="btn btn-primary">Detail</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}
