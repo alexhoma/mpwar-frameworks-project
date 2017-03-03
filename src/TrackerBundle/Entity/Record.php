@@ -61,15 +61,6 @@ class Record
     private $datetime;
 
     /**
-     * Record constructor.
-     * @param $post
-     */
-    public function __construct($post)
-    {
-        $this->post = $post;
-    }
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -139,5 +130,69 @@ class Record
     public function getDatetime()
     {
         return $this->datetime;
+    }
+
+    /**
+     * @param mixed $post
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * @param mixed $device
+     */
+    public function setDevice($device)
+    {
+        $this->device = $device;
+    }
+
+    /**
+     * @param mixed $operatingSystem
+     */
+    public function setOperatingSystem($operatingSystem)
+    {
+        $this->operatingSystem = $operatingSystem;
+    }
+
+    /**
+     * @param mixed $browser
+     */
+    public function setBrowser($browser)
+    {
+        $this->browser = $browser;
+    }
+
+    /**
+     * @param mixed $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @param mixed $language
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    /**
+     * @param mixed $cookieEnabled
+     */
+    public function setCookieEnabled($cookieEnabled)
+    {
+        $this->cookieEnabled = $cookieEnabled;
+    }
+
+    /**
+     * @param mixed $datetime
+     */
+    public function setDatetime($datetime)
+    {
+        $this->datetime = $datetime;
     }
 }

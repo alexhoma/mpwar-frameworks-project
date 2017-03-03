@@ -13,7 +13,7 @@ class BlogController extends Controller
 {
     public function blogAction()
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
+        $em    = $this->get('doctrine.orm.default_entity_manager');
         $posts = $em->getRepository('TrackerBundle\Entity\Post')->findAll();
 
         return $this->render('TrackerBundle:Blog:blog.html.twig', array(
@@ -23,13 +23,13 @@ class BlogController extends Controller
 
     public function postAction($postSlug)
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
+        $em   = $this->get('doctrine.orm.default_entity_manager');
         $post = $em->getRepository('TrackerBundle\Entity\Post')
             ->findOneBy(['slug' => $postSlug]);
 
         if (!$post) {
             throw $this->createNotFoundException(
-                'No post found for this: ' . $slug
+                'No post found for this: ' . $postSlug
             );
         }
 
@@ -41,7 +41,7 @@ class BlogController extends Controller
     public function createPostAction(Request $request)
     {
         $post = new Post();
-        
+
         $form = $this->createFormBuilder($post)
             ->add('slug', TextType::class)
             ->add('title', TextType::class)
