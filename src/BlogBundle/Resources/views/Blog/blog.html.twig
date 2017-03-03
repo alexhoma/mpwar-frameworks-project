@@ -5,6 +5,10 @@
 {% block body %}
     <div class="page-header">
         <h1>Welcome to the Blog!</h1>
+
+        <a href="{{ url('blog_list') }}">Blog</a> |
+        <a href="{{ url('post_create') }}">Create</a> |
+        <a href="{{ url('tracker_dashboard') }}" target="_blank">Dashboard</a>
     </div>
 
     <h4>Current posts:</h4>

@@ -1,7 +1,13 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Create post</h1><hr>
+    <div class="page-header">
+        <h1>Create post</h1>
+
+        <a href="{{ url('blog_list') }}">Blog</a> |
+        <a href="{{ url('post_create') }}">Create</a> |
+        <a href="{{ url('tracker_dashboard') }}" target="_blank">Dashboard</a>
+    </div>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}

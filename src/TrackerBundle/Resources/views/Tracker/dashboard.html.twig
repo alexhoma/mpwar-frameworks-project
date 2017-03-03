@@ -1,8 +1,12 @@
-{% extends '::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
     <div class="page-header">
         <h1>Tracker Dashboard</h1>
+
+        <a href="{{ url('blog_list') }}" target="_blank">Blog</a> |
+        <a href="{{ url('post_create') }}" target="_blank">Create</a> |
+        <a href="{{ url('tracker_dashboard') }}">Dashboard</a>
     </div>
 
     <h4>Total visits: {{ records|length }}</h4>
@@ -39,7 +43,7 @@
                     <td>{{ record.browser }}</td>
                     <td>{{ record.version }}</td>
                     <td>{{ record.language }}</td>
-                    <td>{{ record.cookieEnabled }}</td>
+                    <td>{{ (record.cookieEnabled > 0)? 'Yes':'No' }}</td>
                     {#<td>{{ record.datetime }}</td>#}
                     <td>
                         <a href="{{ url('tracker_record', { 'recordId': record.id } ) }}"

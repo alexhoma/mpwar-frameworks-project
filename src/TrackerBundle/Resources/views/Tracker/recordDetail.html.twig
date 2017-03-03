@@ -1,12 +1,58 @@
-{% extends "::base.html.twig" %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Record detail{% endblock %}
 
 {% block body %}
     <div class="page-header">
         <h1>Detailed record info</h1>
+
+        <a href="{{ url('tracker_dashboard') }}">< Back to dashboard</a>
     </div>
     <h4>Record ID: #{{ record.id }}</h4>
+
+    <!-- Table -->
+    <table class="table table-stripped table-bordered">
+        <thead>
+            <tr>
+                <th width="20%">Item</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Post</td>
+                <td>{{ record.post.title }}</td>
+            </tr>
+            <tr>
+                <td>Device</td>
+                <td>{{ record.device }}</td>
+            </tr>
+            <tr>
+                <td>OS</td>
+                <td>{{ record.operatingSystem }}</td>
+            </tr>
+            <tr>
+                <td>Browser</td>
+                <td>{{ record.browser }}</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>{{ record.version }}</td>
+            </tr>
+            <tr>
+                <td>Language</td>
+                <td>{{ record.language }}</td>
+            </tr>
+            <tr>
+                <td>Cookies Enabled</td>
+                <td>{{ (record.cookieEnabled > 0)? 'Yes':'No' }}</td>
+            </tr>
+            <tr>
+                {#<th>Datetime</th>#}
+                {#<td>{{ record.datetime }}</td>#}
+            </tr>
+        </tbody>
+    </table>
 
 
 {% endblock %}
