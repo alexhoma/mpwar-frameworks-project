@@ -1,6 +1,6 @@
 tracker:
     resource: "@TrackerBundle/Resources/config/routing.yml"
-    prefix:   /tracker
+    prefix:   /
 
 logger:
     resource: "@LoggerBundle/Controller/"

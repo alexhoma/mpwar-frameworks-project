@@ -1,14 +1,16 @@
+# Tracker
 tracker_dashboard:
-    path:      /dashboard
-    defaults:  { _controller: TrackerBundle:Dashboard:index }
-home:
-    path:     /home
-    defaults: { _controller: TrackerBundle:Test:home }
+    path:      /tracker/dashboard
+    defaults:  { _controller: TrackerBundle:Tracker:dashbaord }
+track:
+    path:      /tracker/track
+    defaults:  { _controller: TrackerBundle:Tracker:track}
 
-blog:
+# Testing routes
+blog_list:
     path:     /blog
-    defaults: { _controller: TrackerBundle:Test:blog }
+    defaults: { _controller: TrackerBundle:Blog:blog }
 
-faq:
-    path:     /faq
-    defaults: { _controller: TrackerBundle:Test:faq }
+post:
+    path:     /blog/{postSlug}
+    defaults: { _controller: TrackerBundle:Blog:post }

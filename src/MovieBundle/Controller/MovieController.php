@@ -56,7 +56,9 @@ class MovieController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            dump($form);die;
             $movie = $form->getData();
+            dump($movie);die;
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($movie);

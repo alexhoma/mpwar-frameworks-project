@@ -19,11 +19,11 @@ class Record
     private $id;
 
     /**
-     * Many Records have One Page
-     * @ORM\ManyToOne(targetEntity="Page", inversedBy="records")
-     * @ORM\JoinColumn(name="page_id", referencedColumnName="id")
+     * Many Records have One Post
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="records")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
-    private $page;
+    private $post;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -59,4 +59,85 @@ class Record
      * @ORM\Column(type="datetime")
      */
     private $datetime;
+
+    /**
+     * Record constructor.
+     * @param $post
+     */
+    public function __construct($post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDevice()
+    {
+        return $this->device;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOperatingSystem()
+    {
+        return $this->operatingSystem;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBrowser()
+    {
+        return $this->browser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCookieEnabled()
+    {
+        return $this->cookieEnabled;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatetime()
+    {
+        return $this->datetime;
+    }
 }

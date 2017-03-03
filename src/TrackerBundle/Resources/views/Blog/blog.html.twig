@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+    <h1>Blog page</h1><hr>
+
+    <h4>Current posts:</h4>
+    <div class="list-group">
+    {% for post in posts %}
+        <a href="{{ url('post', { 'postSlug': post.slug } ) }}" class="list-group-item">
+            {{ post.title }}
+        </a>
+    {% endfor %}
+    </div>
+{% endblock %}
+

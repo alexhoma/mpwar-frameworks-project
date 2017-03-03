@@ -1,0 +1,29 @@
+<script>
+    var params = {
+        post: '{{ app.request.attributes.get('postSlug') }}',
+        device: 'Mobile',
+        operatingSystem: 'Android',
+        browser: 'Chrome Mobile',
+        version: '56.45362',
+        language: 'en',
+        cookieEnabled: true
+    }
+
+    var trackPost = function () {
+        var xhr = new XMLHttpRequest();
+        var url = "{{ url('track') }}";
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+                alert('Tracked OK');
+            }
+        }
+        xhr.send(JSON.stringify(params));
+    }
+
+    trackPost();
+</script>
