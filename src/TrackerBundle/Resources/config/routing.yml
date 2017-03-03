@@ -11,6 +11,11 @@ blog_list:
     path:     /blog
     defaults: { _controller: TrackerBundle:Blog:blog }
 
+post_create:
+    path:     /blog/create
+    defaults: { _controller: TrackerBundle:Blog:createPost }
+
 post:
-    path:     /blog/{postSlug}
+    path:     /blog/post/{postSlug}
     defaults: { _controller: TrackerBundle:Blog:post }
+
