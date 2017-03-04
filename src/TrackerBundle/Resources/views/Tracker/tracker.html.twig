@@ -1,20 +1,118 @@
 <script>
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+    var isDesktop = {
+        MacOS: function () {
+            return navigator.userAgent.match(/Macintosh; Intel Mac OS|Macintosh; PPC Mac OS X/i);
+        },
+        Linux: function () {
+            return navigator.userAgent.match(/Linux x86_64|Linux i686/i);
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/Windows NT/i);
+        },
+        any: function () {
+            return (isDesktop.MacOS() || isDesktop.Linux() || isDesktop.Windows() );
+        }
+    };
+
+    var Browser = {
+        get: function () {
+            var ua = navigator.userAgent;
+            var msie = false;
+            var ff = false;
+            var chrome = false;
+
+            if (/MSIE (\d+\.\d+);/.test(ua)) //test for MSIE x.x; True or False
+            {
+                var msie = (/MSIE (\d+\.\d+);/.test(ua)); //True or False
+                var ieversion = new Number(RegExp.$1); //gets browser version
+                return {
+                    type: 'Internet Explorer',
+                    version: 'v.'+ieversion
+                }
+            }
+            if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.ua))//test for Firefox/x.x or Firefox x.x
+            {
+                var ff = (/Firefox[\/\s](\d+\.\d+)/.test(navigator.ua)); //True or False
+                var ffversion = new Number(RegExp.$1) //gets browser version
+                return {
+                    type: 'Mozilla Firefox',
+                    version: 'v.'+ffversion
+                }
+            }
+            if (ua.lastIndexOf('Chrome/') > 0) {
+                var version = ua.substr(ua.lastIndexOf('Chrome/') + 7, 2);
+                return {
+                    type: 'Google Chrome',
+                    version: 'v.'+version
+                }
+            }
+            else {
+                return {
+                    type: 'Undefined browser',
+                    version: '-'
+                }
+            }
+        }
+    }
+
+    // Detect OS
+    function getOS() {
+        var os;
+        if (isMobile.any() == null) {
+            os = isDesktop.any();
+        } else {
+            os = isMobile.any();
+        }
+
+        return os[0];
+    }
+
+    function getDevice() {
+        if (isMobile.any() == null) {
+            return 'Desktop Computer';
+        } else {
+            return 'Mobile/Tablet';
+        }
+    }
+
+    // Ajax call
     var params = {
         postSlug: '{{ app.request.attributes.get('postSlug') }}',
-        device: 'Mobile',
-        operatingSystem: 'Android',
-        browser: 'Chrome Mobile',
-        version: '56.45362',
-        language: 'en',
-        cookieEnabled: true
+        device: getDevice(),
+        operatingSystem: getOS(),
+        browser: Browser.get().type,
+        version: Browser.get().version,
+        language: navigator.language,
+        cookieEnabled: navigator.cookieEnabled
     }
     var trackPost = function () {
         var xhr = new XMLHttpRequest();
         var url = "{{ url('track') }}";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-type", "application/json");
-        xhr.onreadystatechange = function() {
-            if(xhr.readyState == 4 && xhr.status == 200) {
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 var response = JSON.parse(xhr.responseText);
                 console.log('Tracked: ' + response.tracked);
                 console.log(params);

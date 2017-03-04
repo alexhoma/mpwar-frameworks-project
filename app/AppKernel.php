@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new MovieBundle\MovieBundle(),
             new LoggerBundle\LoggerBundle(),
             new TrackerBundle\TrackerBundle(),
+            new TrackerAlertBundle\TrackerAlertBundle(),
             new BlogBundle\BlogBundle(),
         ];
 

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use TrackerBundle\Entity\Record;
+use TrackerBundle\Event\RecordTrackedEvent;
 
 
 class TrackerController extends Controller
@@ -79,6 +80,8 @@ class TrackerController extends Controller
         $em->persist($record);
         $em->flush();
 
+//        $this->throwRecordTrackerEvent($record);
+
         return new JsonResponse(array('tracked' => true));;
     }
 
@@ -89,5 +92,13 @@ class TrackerController extends Controller
             ->findOneBy(['slug' => $slug]);
 
         return $page;
+    }
+
+    private function throwRecordTrackerEvent($record)
+    {
+        $recordTrackedEvent = new RecordTrackedEvent($record);
+        $event = $this->get('event_dispatcher');
+
+        $event->dispatch('record.tracked', $recordTrackedEvent);
     }
 }

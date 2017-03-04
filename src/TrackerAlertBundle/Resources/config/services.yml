@@ -1,0 +1,10 @@
+services:
+    tracker_alert:
+        class: TrackerAlertBundle\Services\TrackerAlert
+
+    tracker_alert_event_listener:
+        arguments:
+            - "@tracker_alert"
+        class: TrackerAlertBundle\EventListener\TrackerAlertEventListener
+        tags:
+            - { name: kernel.event_listener, event: record.tracked, method: shouldAlert }
