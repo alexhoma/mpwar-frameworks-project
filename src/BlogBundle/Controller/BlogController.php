@@ -19,6 +19,9 @@ class BlogController extends Controller
         $this->slugify = new Slugify();
     }
 
+    /**
+     * Shows post list / home blog
+     */
     public function blogAction()
     {
         $em    = $this->get('doctrine.orm.default_entity_manager');
@@ -29,6 +32,9 @@ class BlogController extends Controller
         ));
     }
 
+    /**
+     * Shows post detail
+     */
     public function postAction($postSlug)
     {
         $em   = $this->get('doctrine.orm.default_entity_manager');
@@ -46,6 +52,9 @@ class BlogController extends Controller
         ));
     }
 
+    /**
+     * Create new post or show form
+     */
     public function createPostAction(Request $request)
     {
         $post = new Post();

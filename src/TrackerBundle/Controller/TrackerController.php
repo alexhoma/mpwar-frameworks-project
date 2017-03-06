@@ -11,7 +11,9 @@ use TrackerBundle\Event\RecordTrackedEvent;
 
 class TrackerController extends Controller
 {
-    # Dashboard index / registry list
+    /**
+     * Dashboard index / registry list
+     */
     public function dashboardAction()
     {
         $em      = $this->get('doctrine.orm.default_entity_manager');
@@ -28,7 +30,9 @@ class TrackerController extends Controller
         ));
     }
 
-    # Show registry details
+    /**
+     * Show single record details
+     */
     public function recordDetailAction($recordId)
     {
         $em     = $this->get('doctrine.orm.default_entity_manager');
@@ -44,7 +48,9 @@ class TrackerController extends Controller
         ));
     }
 
-    # Show registry details
+    /**
+     * Show single post records/visits
+     */
     public function postRecordsDetailAction($postId)
     {
         $em = $this->get('doctrine.orm.default_entity_manager');
@@ -67,7 +73,9 @@ class TrackerController extends Controller
         ));
     }
 
-    # Insert registry
+    /**
+     * Insert registry
+     */
     public function trackAction(Request $request)
     {
         $record  = new Record();
