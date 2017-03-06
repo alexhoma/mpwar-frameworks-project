@@ -28,7 +28,6 @@ class Alert
         $recordsCount = $this->recordsCount($post);
 
         if ($recordsCount == 10 || $recordsCount == 50 || $recordsCount == 100) {
-//        if ($recordsCount > 10) {
             $this->sendAlert($post, $recordsCount);
         }
         else {
@@ -49,10 +48,10 @@ class Alert
     {
         $message = Swift_Message::newInstance()
             ->setSubject('Congratulations')
-//            ->setFrom('alexcm.14@gmail.com')
+            ->setFrom('alexcm.14@gmail.com')
             ->setTo('alexcm.14@gmail.com')
             ->setBody('Visits alert:')
-            ->addPart('Your post ' . $post->getTitle() . ' has had ' . $recordsCount . ' visits.', 'text/html');
+            ->addPart('Your post <b>' . $post->getTitle() . '</b> has reached <b>' . $recordsCount . ' visits.</b>', 'text/html');
 
         $this->mailer->send($message);
     }
