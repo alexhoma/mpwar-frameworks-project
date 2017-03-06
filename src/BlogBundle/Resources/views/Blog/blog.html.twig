@@ -11,6 +11,15 @@
         <a href="{{ url('tracker_dashboard') }}" target="_blank" class="pull-right">Dashboard</a>
     </div>
     <br>
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success fade in alert-dismissable">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {% endfor %}
+        </div>
+        <br>
+    {% endif %}
 
     <h4>Current posts:</h4>
     <div class="list-group">

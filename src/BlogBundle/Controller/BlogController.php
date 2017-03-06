@@ -85,6 +85,11 @@ class BlogController extends Controller
             $em->persist($post);
             $em->flush();
 
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', 'Post created successfully!')
+            ;
+
             return $this->redirectToRoute('blog_list');
         }
 
