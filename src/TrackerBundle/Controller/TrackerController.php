@@ -80,7 +80,7 @@ class TrackerController extends Controller
         $em->persist($record);
         $em->flush();
 
-//        $this->throwRecordTrackerEvent($record);
+        $this->throwRecordTrackerEvent($record);
 
         return new JsonResponse(array('tracked' => true));;
     }

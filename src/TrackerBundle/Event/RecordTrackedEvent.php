@@ -17,8 +17,6 @@ class RecordTrackedEvent extends Event
 
     public function getRecord()
     {
-        die();
-
         return $this->record;
     }
 }

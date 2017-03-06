@@ -1,6 +1,6 @@
 <?php
 
-namespace TrackerAlertBundle\DependencyInjection;
+namespace AlertBundle\DependencyInjection;
 
 
 use Symfony\Component\Config\FileLocator;
@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 
-class TrackerAlertExtension extends Extension
+class AlertExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
