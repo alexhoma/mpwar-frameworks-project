@@ -2,6 +2,7 @@
 
 namespace BlogBundle\Controller;
 
+use Cocur\Slugify\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -11,6 +12,13 @@ use BlogBundle\Entity\Post;
 
 class BlogController extends Controller
 {
+    private $slugify;
+
+    public function __construct()
+    {
+        $this->slugify = new Slugify();
+    }
+
     public function blogAction()
     {
         $em    = $this->get('doctrine.orm.default_entity_manager');
@@ -43,16 +51,34 @@ class BlogController extends Controller
         $post = new Post();
 
         $form = $this->createFormBuilder($post)
-            ->add('slug', TextType::class)
-            ->add('title', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('save', SubmitType::class, array('label' => 'Upload post!'))
+            ->add('title', TextType::class, array(
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('description', TextareaType::class, array(
+                'attr'  => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('save', SubmitType::class, array(
+                'label' => 'Upload post!',
+                'attr'  => array(
+                    'class' => 'btn btn-success',
+                    'style' => 'margin-top: 10px'
+                )
+            ))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $post = $form->getData();
+            $postTitle = $post->getTitle();
+
+            // Add post slug
+            $postSlug = $this->slugify->slugify($postTitle);
+            $post->setSlug($postSlug);
 
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($post);

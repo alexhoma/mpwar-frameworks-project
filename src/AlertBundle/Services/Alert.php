@@ -30,9 +30,6 @@ class Alert
         if ($recordsCount == 10 || $recordsCount == 50 || $recordsCount == 100) {
             $this->sendAlert($post, $recordsCount);
         }
-        else {
-            echo 'Not enough records to send the next email. Records: ' . $recordsCount . ' - ';
-        }
     }
 
     private function recordsCount($post)
@@ -51,7 +48,8 @@ class Alert
             ->setFrom('alexcm.14@gmail.com')
             ->setTo('alexcm.14@gmail.com')
             ->setBody('Visits alert:')
-            ->addPart('Your post <b>' . $post->getTitle() . '</b> has reached <b>' . $recordsCount . ' visits.</b>', 'text/html');
+            ->addPart('Your post <b>' . $post->getTitle() . '</b> has reached <b>' . $recordsCount . ' visits.</b>',
+                'text/html');
 
         $this->mailer->send($message);
     }
