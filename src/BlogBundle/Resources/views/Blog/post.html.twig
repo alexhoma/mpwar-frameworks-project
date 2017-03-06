@@ -12,6 +12,10 @@
     </div>
 
     <div>{{ post.description | raw }}</div>
+
+    <br>
+    <b>Date: </b>{{ post.datetime | date('d-m-Y H:m:s') }}
+
 {% endblock %}
 
 {% block javascripts %}

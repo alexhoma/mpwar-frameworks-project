@@ -39,6 +39,11 @@ class Post
      */
     private $records;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datetime;
+
 
     public function __construct() {
         $this->records = new ArrayCollection();
@@ -85,6 +90,15 @@ class Post
     }
 
     /**
+     * @return mixed
+     */
+    public function getDatetime()
+    {
+        return $this->datetime;
+    }
+
+
+    /**
      * @param mixed $slug
      */
     public function setSlug($slug)
@@ -106,5 +120,13 @@ class Post
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @param mixed $datetime
+     */
+    public function setDatetime($datetime)
+    {
+        $this->datetime = $datetime;
     }
 }

@@ -59,8 +59,9 @@
                 <table class="table table-stripped table-bordered">
                     <thead>
                     <tr>
-                        <th width="15%">Record ID</th>
-                        <th width="65%">Post title</th>
+                        <th width="10%">ID</th>
+                        <th width="40%">Post title</th>
+                        <th width="30%">Datetime</th>
                         <th width="20%">Link</th>
                     </tr>
                     </thead>
@@ -69,6 +70,7 @@
                         <tr>
                             <td>{{ record.id }}</td>
                             <td>{{ record.post.title }}</td>
+                            <td>{{ record.datetime.date | date('d-m-Y H:m:s') }}h</td>
                             <td>
                                 <a href="{{ url('tracker_record', { 'recordId': record.id } ) }}"
                                    class="btn btn-primary">Detail</a>

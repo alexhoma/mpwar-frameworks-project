@@ -48,8 +48,8 @@
                 <td>{{ (record.cookieEnabled > 0)? 'Yes':'No' }}</td>
             </tr>
             <tr>
-                {#<th>Datetime</th>#}
-                {#<td>{{ record.datetime }}</td>#}
+                <td>Datetime</td>
+                <td>{{ record.datetime.date | date('d-m-Y H:m:s')}}h</td>
             </tr>
         </tbody>
     </table>

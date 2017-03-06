@@ -79,6 +79,7 @@ class BlogController extends Controller
             // Add post slug
             $postSlug = $this->slugify->slugify($postTitle);
             $post->setSlug($postSlug);
+            $post->setDatetime(date_create(date("Y-m-d H:i:s")));
 
             $em = $this->get('doctrine.orm.default_entity_manager');
             $em->persist($post);
