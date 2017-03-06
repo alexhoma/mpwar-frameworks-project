@@ -1,7 +1,7 @@
-Symfony Framework Project
+Blog Visits Tracker
 ========================
 
-Blog visits tracker project based on the Symfony Standard Edition.
+Tracker application based on the Symfony Standard Edition.
 
 
 Initialize
