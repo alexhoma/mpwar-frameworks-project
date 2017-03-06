@@ -27,7 +27,7 @@ Initialize
   * **AlertBundle** - This bundle tells us if we have achieved a certain number of visits in our posts, sending an email with the info via SwiftMailer.<br>
   It has a listener triggered just after a visit is tracked.<br>
   By default we will recieve an email every 10, 50 and 100 visits of each post.
-    
+
 To track posts visits you **must** include the following JS snippet on your post detail view:
 
 ```

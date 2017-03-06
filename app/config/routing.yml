@@ -6,12 +6,3 @@ blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
     prefix:   /
 
-logger:
-    resource: "@LoggerBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-movie:
-    resource: "@MovieBundle/Controller/"
-    type:     annotation
-    prefix:   /
