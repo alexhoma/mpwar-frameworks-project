@@ -35,6 +35,10 @@ class TrackerController extends Controller
         $record = $em->getRepository('TrackerBundle\Entity\Record')
             ->findOneBy(['id' => $recordId]);
 
+        if (!$record) {
+            throw $this->createNotFoundException('Record not found!');
+        }
+
         return $this->render('TrackerBundle:Tracker:recordDetail.html.twig', array(
             'record' => $record
         ));
@@ -48,6 +52,10 @@ class TrackerController extends Controller
         // get post
         $post = $em->getRepository('BlogBundle\Entity\Post')
             ->findOneBy(['id' => $postId]);
+
+        if (!$post) {
+            throw $this->createNotFoundException('Post not found!');
+        }
 
         // get records
         $records = $em->getRepository('TrackerBundle\Entity\Record')
@@ -88,10 +96,10 @@ class TrackerController extends Controller
     private function getPostBySlug($slug)
     {
         $em   = $this->get('doctrine.orm.default_entity_manager');
-        $page = $em->getRepository('BlogBundle\Entity\Post')
+        $post = $em->getRepository('BlogBundle\Entity\Post')
             ->findOneBy(['slug' => $slug]);
 
-        return $page;
+        return $post;
     }
 
     private function throwRecordTrackerEvent($record)
