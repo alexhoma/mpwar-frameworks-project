@@ -25,8 +25,8 @@ Initialize
     It also has a basic dashboard to show us all recorded visits in our blog, and also shows us the visits of a concrete post.
     
   * **AlertBundle** - This bundle tells us if we have achieved a certain number of visits in our posts, sending an email with the info via SwiftMailer.<br>
-  It has a listener trigered after every visit tracked.<br>
-  By default we will recieve an email every 10, 50 and 100 visits.
+  It has a listener triggered just after a visit is tracked.<br>
+  By default we will recieve an email every 10, 50 and 100 visits of each post.
   
   * Other bundles (MovieBundle, LoggerBundle) can be ignored, just for learning purposes.
   
