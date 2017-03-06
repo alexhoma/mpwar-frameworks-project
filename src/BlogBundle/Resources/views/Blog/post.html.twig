@@ -7,8 +7,8 @@
         <h1>{{ post.title }}</h1>
 
         <a href="{{ url('blog_list') }}">Blog</a> |
-        <a href="{{ url('post_create') }}">Create</a> |
-        <a href="{{ url('tracker_dashboard') }}" target="_blank">Dashboard</a>
+        <a href="{{ url('post_create') }}">Create</a>
+        <a href="{{ url('tracker_dashboard') }}" target="_blank" class="pull-right">Dashboard</a>
     </div>
 
     <div>{{ post.description | raw }}</div>

@@ -51,7 +51,7 @@ class BlogController extends Controller
         $post = new Post();
 
         $form = $this->createFormBuilder($post)
-            ->add('title', TextType::class, array(
+                ->add('title', TextType::class, array(
                 'attr'  => array(
                     'class' => 'form-control'
                 )
