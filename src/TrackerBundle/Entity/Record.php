@@ -20,7 +20,7 @@ class Record
 
     /**
      * Many Records have One Post
-     * @ORM\ManyToOne(targetEntity="BlogBundle\Entity\Post", inversedBy="records")
+     * @ORM\ManyToOne(targetEntity="BlogBundle\Entity\Post")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
     private $post;
@@ -59,6 +59,38 @@ class Record
      * @ORM\Column(type="datetime")
      */
     private $datetime;
+
+    /**
+     * Record constructor.
+     * @param $post
+     * @param $device
+     * @param $operatingSystem
+     * @param $browser
+     * @param $version
+     * @param $language
+     * @param $cookieEnabled
+     * @param $datetime
+     */
+    public function __construct(
+        $post,
+        $device,
+        $operatingSystem,
+        $browser,
+        $version,
+        $language,
+        $cookieEnabled,
+        $datetime
+    ) {
+        $this->post            = $post;
+        $this->device          = $device;
+        $this->operatingSystem = $operatingSystem;
+        $this->browser         = $browser;
+        $this->version         = $version;
+        $this->language        = $language;
+        $this->cookieEnabled   = $cookieEnabled;
+        $this->datetime        = $datetime;
+    }
+
 
     /**
      * @return mixed
@@ -130,69 +162,5 @@ class Record
     public function getDatetime()
     {
         return $this->datetime;
-    }
-
-    /**
-     * @param mixed $post
-     */
-    public function setPost($post)
-    {
-        $this->post = $post;
-    }
-
-    /**
-     * @param mixed $device
-     */
-    public function setDevice($device)
-    {
-        $this->device = $device;
-    }
-
-    /**
-     * @param mixed $operatingSystem
-     */
-    public function setOperatingSystem($operatingSystem)
-    {
-        $this->operatingSystem = $operatingSystem;
-    }
-
-    /**
-     * @param mixed $browser
-     */
-    public function setBrowser($browser)
-    {
-        $this->browser = $browser;
-    }
-
-    /**
-     * @param mixed $version
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-    }
-
-    /**
-     * @param mixed $language
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-    }
-
-    /**
-     * @param mixed $cookieEnabled
-     */
-    public function setCookieEnabled($cookieEnabled)
-    {
-        $this->cookieEnabled = $cookieEnabled;
-    }
-
-    /**
-     * @param mixed $datetime
-     */
-    public function setDatetime($datetime)
-    {
-        $this->datetime = $datetime;
     }
 }

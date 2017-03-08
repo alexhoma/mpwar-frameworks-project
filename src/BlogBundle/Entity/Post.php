@@ -34,12 +34,6 @@ class Post
     private $description;
 
     /**
-     * One Page has Many Records.
-     * @ORM\OneToMany(targetEntity="\TrackerBundle\Entity\Record", mappedBy="post")
-     */
-    private $records;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $datetime;

@@ -1,13 +1,13 @@
 # Tracker
 tracker_dashboard:
     path:      /tracker/dashboard
-    defaults:  { _controller: TrackerBundle:Tracker:dashboard }
+    defaults:  { _controller: TrackerBundle:Dashboard:dashboard }
 tracker_record:
     path:      /tracker/record/{recordId}
-    defaults:  { _controller: TrackerBundle:Tracker:recordDetail }
+    defaults:  { _controller: TrackerBundle:Dashboard:recordDetail }
 post_records:
     path:      /tracker/post-records/{postId}
-    defaults:  { _controller: TrackerBundle:Tracker:postRecordsDetail }
+    defaults:  { _controller: TrackerBundle:Dashboard:postRecordsDetail }
 track:
     path:      /tracker/track
     defaults:  { _controller: TrackerBundle:Tracker:track }
