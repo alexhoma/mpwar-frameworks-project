@@ -2,13 +2,13 @@
 
 namespace BlogBundle\Controller;
 
+use BlogBundle\Entity\Post;
 use Cocur\Slugify\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use BlogBundle\Entity\Post;
 
 class BlogController extends Controller
 {
@@ -24,8 +24,8 @@ class BlogController extends Controller
      */
     public function blogAction()
     {
-        $em    = $this->get('doctrine.orm.default_entity_manager');
-        $posts = $em->getRepository('BlogBundle\Entity\Post')->findAll();
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
+        $posts         = $entityManager->getRepository('BlogBundle\Entity\Post')->findAll();
 
         return $this->render('BlogBundle:Blog:blog.html.twig', array(
             'posts' => $posts,
@@ -37,8 +37,9 @@ class BlogController extends Controller
      */
     public function postAction($postSlug)
     {
-        $em   = $this->get('doctrine.orm.default_entity_manager');
-        $post = $em->getRepository('BlogBundle\Entity\Post')
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
+        $post          = $entityManager
+            ->getRepository('BlogBundle\Entity\Post')
             ->findOneBy(['slug' => $postSlug]);
 
         if (!$post) {
@@ -60,19 +61,19 @@ class BlogController extends Controller
         $post = new Post();
 
         $form = $this->createFormBuilder($post)
-                ->add('title', TextType::class, array(
-                'attr'  => array(
+            ->add('title', TextType::class, array(
+                'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('description', TextareaType::class, array(
-                'attr'  => array(
+                'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('save', SubmitType::class, array(
                 'label' => 'Upload post!',
-                'attr'  => array(
+                'attr' => array(
                     'class' => 'btn btn-success',
                     'style' => 'margin-top: 10px'
                 )
@@ -82,7 +83,7 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $post = $form->getData();
+            $post      = $form->getData();
             $postTitle = $post->getTitle();
 
             // Add post slug
@@ -90,14 +91,14 @@ class BlogController extends Controller
             $post->setSlug($postSlug);
             $post->setDatetime(date_create(date("Y-m-d H:i:s")));
 
-            $em = $this->get('doctrine.orm.default_entity_manager');
-            $em->persist($post);
-            $em->flush();
+            $entityManager = $this->get('doctrine.orm.default_entity_manager');
+            $entityManager->persist($post);
+            $entityManager->flush();
 
-            $request->getSession()
+            $request
+                ->getSession()
                 ->getFlashBag()
-                ->add('success', 'Post created successfully!')
-            ;
+                ->add('success', 'Post created successfully!');
 
             return $this->redirectToRoute('blog_list');
         }

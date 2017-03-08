@@ -16,12 +16,12 @@ class TrackerController extends Controller
      */
     public function dashboardAction()
     {
-        $em      = $this->get('doctrine.orm.default_entity_manager');
-
-        $records = $em->getRepository('TrackerBundle\Entity\Record')
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
+        $records       = $entityManager
+            ->getRepository('TrackerBundle\Entity\Record')
             ->findAll();
-
-        $posts = $em->getRepository('BlogBundle\Entity\Post')
+        $posts         = $entityManager
+            ->getRepository('BlogBundle\Entity\Post')
             ->findAll();
 
         return $this->render('TrackerBundle:Tracker:dashboard.html.twig', array(
@@ -35,8 +35,9 @@ class TrackerController extends Controller
      */
     public function recordDetailAction($recordId)
     {
-        $em     = $this->get('doctrine.orm.default_entity_manager');
-        $record = $em->getRepository('TrackerBundle\Entity\Record')
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
+        $record        = $entityManager
+            ->getRepository('TrackerBundle\Entity\Record')
             ->findOneBy(['id' => $recordId]);
 
         if (!$record) {
@@ -53,10 +54,11 @@ class TrackerController extends Controller
      */
     public function postRecordsDetailAction($postId)
     {
-        $em = $this->get('doctrine.orm.default_entity_manager');
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
 
         // get post
-        $post = $em->getRepository('BlogBundle\Entity\Post')
+        $post = $entityManager
+            ->getRepository('BlogBundle\Entity\Post')
             ->findOneBy(['id' => $postId]);
 
         if (!$post) {
@@ -64,7 +66,8 @@ class TrackerController extends Controller
         }
 
         // get records
-        $records = $em->getRepository('TrackerBundle\Entity\Record')
+        $records = $entityManager
+            ->getRepository('TrackerBundle\Entity\Record')
             ->findBy(['post' => $post]);
 
         return $this->render('TrackerBundle:Tracker:postRecordsDetail.html.twig', array(
@@ -83,6 +86,7 @@ class TrackerController extends Controller
 
         $post = $this->getPostBySlug($tracked->postSlug);
 
+        // TODO: Tota aquesta shit per constructor!
         $record->setPost($post);
         $record->setDevice($tracked->device);
         $record->setOperatingSystem($tracked->operatingSystem);
@@ -92,9 +96,9 @@ class TrackerController extends Controller
         $record->setCookieEnabled($tracked->cookieEnabled);
         $record->setDatetime(date_create(date("Y-m-d H:i:s")));
 
-        $em = $this->get('doctrine.orm.default_entity_manager');
-        $em->persist($record);
-        $em->flush();
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
+        $entityManager->persist($record);
+        $entityManager->flush();
 
         $this->throwRecordTrackerEvent($record);
 
@@ -103,8 +107,9 @@ class TrackerController extends Controller
 
     private function getPostBySlug($slug)
     {
-        $em   = $this->get('doctrine.orm.default_entity_manager');
-        $post = $em->getRepository('BlogBundle\Entity\Post')
+        $entityManager = $this->get('doctrine.orm.default_entity_manager');
+        $post          = $entityManager
+            ->getRepository('BlogBundle\Entity\Post')
             ->findOneBy(['slug' => $slug]);
 
         return $post;
@@ -113,7 +118,7 @@ class TrackerController extends Controller
     private function throwRecordTrackerEvent($record)
     {
         $recordTrackedEvent = new RecordTrackedEvent($record);
-        $event = $this->get('event_dispatcher');
+        $event              = $this->get('event_dispatcher');
 
         $event->dispatch('record.tracked', $recordTrackedEvent);
     }
