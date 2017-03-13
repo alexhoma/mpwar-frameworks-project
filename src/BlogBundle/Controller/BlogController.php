@@ -4,6 +4,7 @@ namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Post;
 use Cocur\Slugify\Slugify;
+use BlogBundle\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -60,25 +61,26 @@ class BlogController extends Controller
     {
         $post = new Post();
 
-        $form = $this->createFormBuilder($post)
-            ->add('title', TextType::class, array(
-                'attr' => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('description', TextareaType::class, array(
-                'attr' => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('save', SubmitType::class, array(
-                'label' => 'Upload post!',
-                'attr' => array(
-                    'class' => 'btn btn-success',
-                    'style' => 'margin-top: 10px'
-                )
-            ))
-            ->getForm();
+        $form = $this->createForm(PostType::class, $post);
+//            $this->createFormBuilder($post)
+//            ->add('title', TextType::class, array(
+//                'attr' => array(
+//                    'class' => 'form-control'
+//                )
+//            ))
+//            ->add('description', TextareaType::class, array(
+//                'attr' => array(
+//                    'class' => 'form-control'
+//                )
+//            ))
+//            ->add('save', SubmitType::class, array(
+//                'label' => 'Upload post!',
+//                'attr' => array(
+//                    'class' => 'btn btn-success',
+//                    'style' => 'margin-top: 10px'
+//                )
+//            ))
+//            ->getForm();
 
         $form->handleRequest($request);
 

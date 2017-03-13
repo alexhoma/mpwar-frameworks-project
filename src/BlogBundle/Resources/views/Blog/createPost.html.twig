@@ -9,7 +9,13 @@
         <a href="{{ url('tracker_dashboard') }}" target="_blank" class="pull-right">Dashboard</a>
     </div>
 
+    {#{{ form_start(form) }}#}
+        {#{{ form_widget(form) }}#}
+    {#{{ form_end(form) }}#}
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+        <br>
+        <button type="submit" class="btn btn-success">Create post!</button>
     {{ form_end(form) }}
 {% endblock %}
