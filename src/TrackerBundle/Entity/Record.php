@@ -3,6 +3,7 @@
 
 namespace TrackerBundle\Entity;
 
+use BlogBundle\Entity\Post;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -91,11 +92,10 @@ class Record
         $this->datetime        = $datetime;
     }
 
-
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -103,7 +103,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getPost()
+    public function getPost(): Post
     {
         return $this->post;
     }
@@ -111,7 +111,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getDevice()
+    public function getDevice(): string
     {
         return $this->device;
     }
@@ -119,7 +119,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getOperatingSystem()
+    public function getOperatingSystem(): string
     {
         return $this->operatingSystem;
     }
@@ -127,7 +127,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getBrowser()
+    public function getBrowser(): string
     {
         return $this->browser;
     }
@@ -135,7 +135,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->version;
     }
@@ -143,7 +143,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getLanguage()
+    public function getLanguage(): string
     {
         return $this->language;
     }
@@ -151,7 +151,7 @@ class Record
     /**
      * @return mixed
      */
-    public function getCookieEnabled()
+    public function getCookieEnabled(): bool
     {
         return $this->cookieEnabled;
     }

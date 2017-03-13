@@ -39,7 +39,8 @@ class Post
     private $datetime;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->records = new ArrayCollection();
     }
 
@@ -95,7 +96,7 @@ class Post
     /**
      * @param mixed $slug
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug)
     {
         $this->slug = $slug;
     }
@@ -103,7 +104,7 @@ class Post
     /**
      * @param mixed $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -111,7 +112,7 @@ class Post
     /**
      * @param mixed $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
