@@ -38,6 +38,7 @@ Pages
 ===============
 
 **Blog (post list):**
+<<<<<<< HEAD
 ---------------
 <img src="/readme/blog.png">
 
@@ -53,7 +54,24 @@ Pages
 **Post record list:**
 ---------------
 <img src="/readme/tracker-post-records-list.png">
+=======
+---------------------
+[](/readme/blog.png)
+
+**Post View:**
+--------------
+[](/readme/post-view.png)
+
+**Tracker dashboard (record list):**
+------------------------------------
+[](/readme/tracker-dashboard.png)
+
+**Post record list:**
+---------------------
+[](/readme/tracker-post-records-list.png)
+>>>>>>> fcfe3c73572007e597f7eaf84ad654b4508e368e
 
 **Record view: (user agent details)**
----------------
-<img src="/readme/record-detailed-view.png">
+-------------------------------------
+[](/readme/record-detailed-view.png)
+
