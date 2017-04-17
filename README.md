@@ -36,18 +36,24 @@ To track posts visits you **must** include the following JS snippet on your post
 
 Pages
 ===============
+
 **Blog (post list):**
 ---------------
 <img src="/readme/blog.png">
+
 **Post View:**
 ---------------
 <img src="/readme/post-view.png">
+
 **Tracker dashboard (record list):**
 ---------------
+
 <img src="/readme/tracker-dashboard.png">
+
 **Post record list:**
 ---------------
 <img src="/readme/tracker-post-records-list.png">
+
 **Record view: (user agent details)**
 ---------------
 <img src="/readme/record-detailed-view.png">
